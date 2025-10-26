@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # API Gateway
+  gateway:
+    build: ./gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - game-service
+      - player-service
+      - user-service
+    networks:
+      - cloud-net
+
+  # Game Service
+  game-service:
+    build: ./game-service
+    ports:
+      - "8001:8001"
+    networks:
+      - cloud-net
+
+  # Player Service
+  player-service:
+    build: ./player-service
+    ports:
+      - "8002:8002"
+    networks:
+      - cloud-net
+
+  user-service:
+    build: ./user-service
+    ports:
+      - "8003:8003"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@user-db:5432/users_db
+    depends_on:
+      - user-db
+    networks:
+      - cloud-net
+
+  user-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: users_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - user-db-data:/var/lib/postgresql/data
+    networks:
+      - cloud-net
+
+
+  # Frontend
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_URL: "http://localhost:8000"
+    networks:
+      - cloud-net
+
+volumes:
+  user-db-data:
+
+networks:
+  cloud-net:
+    driver: bridge
