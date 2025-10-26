@@ -16,7 +16,7 @@ spec:
       - name: frontend
         image: australia-southeast1-docker.pkg.dev/cloud-trivia-proj/myrepo/frontend
         ports:
-        - containerPort: 3000
+        - containerPort: 80
         env:
         - name: REACT_APP_API_URL
           value: "http://gateway-service:8000"
@@ -32,4 +32,4 @@ spec:
   ports:
     - protocol: TCP
       port: 3000
-      targetPort: 3000
+      targetPort: 80
