@@ -59,7 +59,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:3000"
+      - "3000:80"   # host 3000 → container 80 (Nginx)
     environment:
       REACT_APP_API_URL: "http://localhost:8000"
     networks:
