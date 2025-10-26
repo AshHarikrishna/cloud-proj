@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: gateway
-        image: australia-southeast1-docker.pkg.dev/cloud-trivia-476202/REPO_NAME/gateway:latest
+        image: australia-southeast1-docker.pkg.dev/cloud-trivia-proj/myrepo/gateway
         ports:
         - containerPort: 8000
 ---

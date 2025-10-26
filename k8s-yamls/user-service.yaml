@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: australia-southeast1-docker.pkg.dev/cloud-trivia-476202/REPO_NAME/user-service:latest
+        image: australia-southeast1-docker.pkg.dev/cloud-trivia-proj/myrepo/user-service
         ports:
         - containerPort: 8003
         env:

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: player-service
-        image: australia-southeast1-docker.pkg.dev/cloud-trivia-476202/REPO_NAME/player-service:latest
+        image: australia-southeast1-docker.pkg.dev/cloud-trivia-proj/myrepo/player-service
         ports:
         - containerPort: 8002
 ---

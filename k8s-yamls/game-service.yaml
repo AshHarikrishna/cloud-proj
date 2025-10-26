@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: game-service
-        image: australia-southeast1-docker.pkg.dev/cloud-trivia-476202/REPO_NAME/game-service:latest
+        image: australia-southeast1-docker.pkg.dev/cloud-trivia-proj/myrepo/game-service
         ports:
         - containerPort: 8001
 ---

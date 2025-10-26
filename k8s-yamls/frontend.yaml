@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: australia-southeast1-docker.pkg.dev/cloud-trivia-476202/REPO_NAME/frontend:latest
+        image: australia-southeast1-docker.pkg.dev/cloud-trivia-proj/myrepo/frontend
         ports:
         - containerPort: 3000
         env:
