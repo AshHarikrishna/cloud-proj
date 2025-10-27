@@ -21,14 +21,14 @@ spec:
           - name: DATABASE_URL
             value: postgresql://postgres:postgres@user-db-service:5432/users_db
           - name: PORT
-            value: "8003"    # ✅ ensures FastAPI/Uvicorn binds to the right port
-        # readinessProbe:      # ✅ ensures service only becomes “Ready” when it’s actually running
+            value: "8003"
+        # readinessProbe:
         #   httpGet:
         #     path: /health
         #     port: 8003
         #   initialDelaySeconds: 5
         #   periodSeconds: 10
-        # livenessProbe:       # ✅ restarts container if it freezes
+        # livenessProbe:
         #   httpGet:
         #     path: /health
         #     port: 8003
@@ -40,7 +40,7 @@ kind: Service
 metadata:
   name: user-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer          # ✅ exposes service externally
   selector:
     app: user-service
   ports:
