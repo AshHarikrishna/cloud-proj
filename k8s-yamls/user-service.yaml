@@ -14,12 +14,26 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: australia-southeast1-docker.pkg.dev/cloud-trivia-proj/myrepo/user-service
+        image: australia-southeast1-docker.pkg.dev/cloud-trivia-proj/myrepo/user-service:latest
         ports:
         - containerPort: 8003
         env:
           - name: DATABASE_URL
             value: postgresql://postgres:postgres@user-db-service:5432/users_db
+          - name: PORT
+            value: "8003"    # ✅ ensures FastAPI/Uvicorn binds to the right port
+        readinessProbe:      # ✅ ensures service only becomes “Ready” when it’s actually running
+          httpGet:
+            path: /health
+            port: 8003
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:       # ✅ restarts container if it freezes
+          httpGet:
+            path: /health
+            port: 8003
+          initialDelaySeconds: 15
+          periodSeconds: 20
 ---
 apiVersion: v1
 kind: Service
